@@ -2,7 +2,7 @@
 import subprocess
 
 normalpy = "./Nobember06.py"  # 相対パス
-wall_1py = "./Nobember07.py"
+wall_1py = "./wall01/wall01.py"
 a_1py = "./Nobember08.py"
 wall_2py = "./Nobember09.py"
 n = "./Dcember01.py"
