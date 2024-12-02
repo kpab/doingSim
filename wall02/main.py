@@ -1,10 +1,8 @@
-'''
-最大人口密度に壁
-'''
+
 from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
-type_name = "壁1"
+type_name = "wall02"
 sim_name = "朝ラッシュ@" + type_name
 
 # シミュレーションの設定
@@ -41,7 +39,7 @@ sim.add_wall(50, 300, 150, 350)
 sim.add_wall(495, 0, 500, 500)
 
 # 追加障害物
-sim.add_wall(395, 350, 405, 360)
+sim.add_wall(400, 340, 405, 360)
 
 # フェイク壁
 # sim.add_fake_wall(475, 0, 500, 500)
@@ -130,4 +128,3 @@ for _ in range(START_HUMAN_COUNT):
 
 # アニメーションの実行
 sim.animate(FRAME_COUNT)
-
