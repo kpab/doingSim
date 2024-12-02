@@ -17,7 +17,7 @@ now_agents_positions = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_
 now_frame = 0 # 現在のフレーム数
 
 class Simulation:
-    def __init__(self, width, height, sim_name="no-name"):
+    def __init__(self, width, height, sim_name="no-name", type_name="no-type"):
         self.sim_name = sim_name
         self.width = width
         self.height = height
