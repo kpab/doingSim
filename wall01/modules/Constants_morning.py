@@ -1,7 +1,7 @@
 # 朝ラッシュ用定数
 # ------------------------
-FRAME_COUNT = 1300
-SKIP_RESULT_COUNT = 300 # 結果にカウントしないフレーム数
+FRAME_COUNT = 300
+SKIP_RESULT_COUNT = 0 # 結果にカウントしないフレーム数
 BORN_RATE = 0.8
 FUTINOBE_RATE = 0.2 # 淵野辺率
 

@@ -9,7 +9,7 @@ from matplotlib.patches import Rectangle
 from modules.Constants_morning import *
 from modules.Agent import Agent
 from modules.Result import *
-from modules.GappingHeatmap import GappingHeatmap
+from modules.GappingHeatmap import *
 
 import datetime
 
@@ -19,6 +19,7 @@ now_frame = 0 # 現在のフレーム数
 class Simulation:
     def __init__(self, width, height, sim_name="no-name", type_name="no-type"):
         self.sim_name = sim_name
+        self.type_name = type_name
         self.width = width
         self.height = height
         self.agents = []
@@ -177,6 +178,15 @@ class Simulation:
                 self.born_agent()
 
     def animate(self, num_frames):
+        with open(LOG_NAME, "a") as f:
+            f.write("-------------------------------\n")
+            t_delta = datetime.timedelta(hours=9)
+            JST = datetime.timezone(t_delta, 'JST')
+            now = datetime.datetime.now(JST)
+            d = now.strftime('%Y/%m/%d %I:%M(%p)')
+            fig_name = now.strftime('%Y%m%d%H%M')
+            f.write(f"記録開始: {d}\n")
+
         fig, ax = plt.subplots(figsize=(10, 10))
         ax.set_xlim(0, self.width)
         ax.set_ylim(0, self.height)
@@ -214,21 +224,21 @@ class Simulation:
         scatter = ax.scatter([], [], c=[])
 
         def update(frame):
-            if now_frame %5000 == 0 and now_frame>SKIP_RESULT_COUNT:
-                # print(now_frame)
-                t_delta = datetime.timedelta(hours=9)
-                JST = datetime.timezone(t_delta, 'JST')
-                now = datetime.datetime.now(JST)
-                d = now.strftime('%Y/%m/%d %I:%M(%p)')
-                fig_name = now.strftime('%Y%m%d%H%M')
-                with open(LOG_NAME, "a") as f:
-                    f.write(f"ふる: {now_agents_positions}\n")
-                Heatmapping(now_agents_positions, self.walls)
-                HeatmappingNumber(now_agents_positions, self.walls, fig_name)
-                SayResult(now_frame, self.goaled_agents)
-                ChkTopFive(now_agents_positions)
-                CalcStandardHensa(now_agents_positions, fig_name)
-                HazuretiHako(now_agents_positions, fig_name)
+            # if now_frame %5000 == 0 and now_frame>SKIP_RESULT_COUNT:
+            #     # print(now_frame)
+            #     t_delta = datetime.timedelta(hours=9)
+            #     JST = datetime.timezone(t_delta, 'JST')
+            #     now = datetime.datetime.now(JST)
+            #     d = now.strftime('%Y/%m/%d %I:%M(%p)')
+            #     fig_name = now.strftime('%Y%m%d%H%M')
+            #     with open(LOG_NAME, "a") as f:
+            #         f.write(f"ふる: {now_agents_positions}\n")
+            #     Heatmapping(now_agents_positions, self.walls)
+            #     HeatmappingNumber(now_agents_positions, self.walls, fig_name)
+            #     SayResult(now_frame, self.goaled_agents)
+            #     ChkTopFive(now_agents_positions)
+            #     CalcStandardHensa(now_agents_positions, fig_name)
+            #     HazuretiHako(now_agents_positions, fig_name)
             if now_frame == FRAME_COUNT:
                 plt.close(fig)
                 return []
@@ -254,8 +264,7 @@ class Simulation:
         fig_name = now.strftime('%Y%m%d%H%M')
 
         with open(LOG_NAME, "a") as f:
-            f.write("-------------------------------\n")
-            f.write(f"記録: {d}\n")
+            f.write(f"終了時刻: {d}\n")
             f.write(f"{self.sim_name}\n")
             f.write(f"全部: {now_agents_positions}\n") # 12/1追加
 
@@ -264,7 +273,10 @@ class Simulation:
         SayResult(now_frame, self.goaled_agents)
         ChkTopFive(now_agents_positions)
         CalcStandardHensa(now_agents_positions, fig_name)
-        HazuretiHako(now_agents_positions, fig_name)
-        # GappingHeatmap()
+
+        # HazuretiHako(now_agents_positions, fig_name)
+        GappingHeatmap(now_agents_positions, self.walls, fig_name)
+        GappingHakohige(now_agents_positions, fig_name, self.type_name)
+        GappingHakohigeHazure(now_agents_positions, fig_name, self.type_name)
         return []
 

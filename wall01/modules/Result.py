@@ -96,7 +96,7 @@ def Heatmapping(now_agents_positions, walls):
             print(line, file=f)
 
 def HeatmappingNumber(now_agents_positions, walls, fig_name):    
-    fig2, ax2 = plt.subplots(figsize=(16, 10),
+    fig2, ax2 = plt.subplots(figsize=(12.0, 8.0),
                            facecolor="gainsboro")
     
     ax2.set_xlim(0, WIDTH_HEATMAP)
@@ -108,7 +108,7 @@ def HeatmappingNumber(now_agents_positions, walls, fig_name):
             ax2.add_patch(Rectangle((wall[0]/10, wall[1]/10), (wall[2]-wall[0])/10, (wall[3]-wall[1])/10))
     ax2.invert_yaxis()
     # plt.show()
-    fig2.savefig(f"z{fig_name}.png")
+    fig2.savefig(f"z{fig_name}.png", dpi=300)
 
 # 上位5位の通られたマスを出力→top20に変更します
 def ChkTopFive(now_agents_positions):
@@ -136,12 +136,12 @@ def CalcStandardHensa(now_agents_positions, fig_name):
     d3 = np.percentile(now_agents_positions, 75)
 
     # 箱ひげ図のプロット
-    fig3, ax = plt.subplots()
-    ax.boxplot(now_agents_positions, whis=[0, 100],vert=False, showmeans=True)  # 横向き, 外れ値表記しないver
-    ax.set_title('箱ひげ図')
-    ax.set_xlabel('通過人数')
+    # fig3, ax = plt.subplots()
+    # ax.boxplot(now_agents_positions, whis=[0, 100],vert=False, showmeans=True)  # 横向き, 外れ値表記しないver
+    # ax.set_title('箱ひげ図')
+    # ax.set_xlabel('通過人数')
     
-    fig3.savefig(f"z{fig_name}_hako.png")
+    # fig3.savefig(f"z{fig_name}_hako.png")
 
     std = np.std(now_agents_positions)
     print("標準偏差: ", std)
@@ -162,7 +162,7 @@ def HazuretiHako(now_agents_positions, fig_name):
 
     # 箱ひげ図のプロット
     fig4, ax = plt.subplots()
-    ax.boxplot(now_agents_positions, vert=False, showmeans=True, whis=1.2)  # 横向き, 外れ値表記しないver
+    ax.boxplot(now_agents_positions, vert=False, showmeans=True, whis=1.4)  # 横向き, 外れ値
     ax.set_title('箱ひげ図(外れ値あり)')
     ax.set_xlabel('通過人数')
 
