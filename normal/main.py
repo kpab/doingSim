@@ -77,10 +77,12 @@ sim.add_start_position(420, 380, 1, False, middle_2=True)
 # ------------------------------
 ### add_goal(x, y, weight, futinobe, middle, middle_2)
 # 目的地(確率あり）
+## kaisatsu
 sim.add_goal(490, 260, 1, False)
 sim.add_goal(490, 280, 1, False)
 sim.add_goal(490, 300, 1, False)
 sim.add_goal(490, 320, 1, False)
+sim.add_goal(490, 340, 1, False) # 12/5 tuika
 
 # 階段(右)
 sim.add_goal(420, 440, 1, True, False, True)

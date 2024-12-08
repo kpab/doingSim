@@ -1,4 +1,4 @@
-
+# coding: UTF-8
 from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
@@ -81,6 +81,7 @@ sim.add_goal(490, 260, 1, False)
 sim.add_goal(490, 280, 1, False)
 sim.add_goal(490, 300, 1, False)
 sim.add_goal(490, 320, 1, False)
+sim.add_goal(490, 340, 1, False) # 12/5 tuika
 
 # 階段(右)
 sim.add_goal(420, 440, 1, True, False, True)

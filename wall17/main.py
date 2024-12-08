@@ -1,27 +1,27 @@
-
+# coding: UTF-8
 from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
 type_name = "wall17"
-sim_name = "朝ラッシュ@" + type_name
+sim_name = "朝ラ�?シュ@" + type_name
 
-# シミュレーションの設定
+# シミュレーションの設�?
 sim = Simulation(WIDTH, HEIGHT, sim_name, type_name)
 
 # sim.add_wall(400, 340, 410, 350)
-# 壁の追加
+# 壁�?�追�?
 
 sim.add_wall(0, 0, 30, 500) # 左
 sim.add_wall(430, 360, 500, 500) # 右
-sim.add_wall(0, 450, 290, 500) # 上
-sim.add_wall(290, 480, 500, 500) # 上
-sim.add_wall(0, 0, 500, 150) # 下
-sim.add_wall(0, 0, 300, 300) # 左下
+sim.add_wall(0, 450, 290, 500) # �?
+sim.add_wall(290, 480, 500, 500) # �?
+sim.add_wall(0, 0, 500, 150) # �?
+sim.add_wall(0, 0, 300, 300) # 左�?
 sim.add_wall(300, 150, 500, 180)
 sim.add_wall(150, 300, 185, 350)
 
-sim.add_wall(110, 420, 140, 450) # エレベーター
-sim.add_wall(375, 180, 400, 210) # 精算機
+sim.add_wall(110, 420, 140, 450) # エレベ�?�ター
+sim.add_wall(375, 180, 400, 210) # 精算�?
 
 sim.add_wall(185, 300, 195, 340)
 sim.add_wall(195, 300, 205, 330)
@@ -38,16 +38,16 @@ sim.add_wall(190, 430, 200, 450)
 sim.add_wall(50, 300, 150, 350)
 sim.add_wall(495, 0, 500, 500)
 
-# 追加障害物
+# 追�?障害物
 sim.add_wall(370, 400, 375, 450)
 
-# フェイク壁
+# フェイク�?
 # sim.add_fake_wall(475, 0, 500, 500)
 sim.add_fake_wall(30,300, 50, 450)
 sim.add_fake_wall(290, 370, 300, 450)
-sim.add_fake_wall(290, 450, 500, 480) # 上
+sim.add_fake_wall(290, 450, 500, 480) # �?
 
-# スタート位置の追加
+# スタート位置の追�?
 ### add_start_position(x, y, weight, futinobe, middle, middle_2)
 # --- futinobe person ---
 sim.add_start_position(490, 200, 1, True, False)
@@ -76,11 +76,12 @@ sim.add_start_position(420, 380, 1, False, middle_2=True)
 
 # ------------------------------
 ### add_goal(x, y, weight, futinobe, middle, middle_2)
-# 目的地(確率あり）
+# 目�?地(確�?あり?�?
 sim.add_goal(490, 260, 1, False)
 sim.add_goal(490, 280, 1, False)
 sim.add_goal(490, 300, 1, False)
 sim.add_goal(490, 320, 1, False)
+sim.add_goal(490, 340, 1, False) # 12/5 tuika
 
 # 階段(右)
 sim.add_goal(420, 440, 1, True, False, True)
@@ -115,16 +116,16 @@ sim.add_middle_position(300, 350)
 # sim.add_middle_position(420, 350, True)
 # sim.add_middle_position(415, 350, True)
 sim.add_middle_position(410, 350, True)
-# 消した
+# 消し�?
 sim.add_middle_position(405, 350, True)
 sim.add_middle_position(400, 350, True)
 sim.add_middle_position(395, 350, True)
 sim.add_middle_position(390, 350, True)
 sim.add_middle_position(385, 350, True)
 
-# 初期エージェントの生成
+# 初期エージェント�?�生�??
 for _ in range(START_HUMAN_COUNT):
     sim.born_agent()
 
-# アニメーションの実行
+# アニメーションの実�?
 sim.animate(FRAME_COUNT)
