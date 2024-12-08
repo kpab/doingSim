@@ -30,7 +30,7 @@ def GappingHeatmap(now_agents_positions, walls, fig_name):
             ax2.add_patch(Rectangle((wall[0]/10, wall[1]/10), (wall[2]-wall[0])/10, (wall[3]-wall[1])/10))
     ax2.invert_yaxis()
     # plt.show()
-    fig2.savefig(f"z{fig_name}_gap.png", dpi=300)
+    fig2.savefig(f"{fig_name}_gap.png", dpi=300)
 
 
 
@@ -54,7 +54,7 @@ def GappingHakohige(now_agents_positions, fig_name, type_name):
     ax.set_xlabel('通過人数')
     ax.set_ylabel(["normal", type_name])
 
-    fig4.savefig(f"z{fig_name}_hako.png")
+    fig4.savefig(f"{fig_name}_hakogap.png")
 
 
 
@@ -83,6 +83,6 @@ def GappingHakohigeHazure(now_agents_positions, fig_name, type_name):
     ax.set_xlabel('通過人数')
     ax.set_ylabel(["normal", type_name])
 
-    fig4.savefig(f"z{fig_name}_hakohazure.png")
+    fig4.savefig(f"{fig_name}_hakohazuregap.png")
 
 

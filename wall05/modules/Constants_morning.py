@@ -35,4 +35,4 @@ PERFECT_FAKE = True # やる
 HIDE = True # シミュレーション隠すか
 BACKGROUND = True # Backgroundか
 # ----------------
-LOG_NAME = "zylwall05og.txt"
+LOG_NAME = "wall05.txt"

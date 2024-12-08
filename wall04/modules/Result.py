@@ -108,7 +108,7 @@ def HeatmappingNumber(now_agents_positions, walls, fig_name):
             ax2.add_patch(Rectangle((wall[0]/10, wall[1]/10), (wall[2]-wall[0])/10, (wall[3]-wall[1])/10))
     ax2.invert_yaxis()
     # plt.show()
-    fig2.savefig(f"z{fig_name}.png", dpi=300)
+    fig2.savefig(f"{fig_name}.png", dpi=300)
 
 # 上位5位の通られたマスを出力→top20に変更します
 def ChkTopFive(now_agents_positions):
@@ -166,4 +166,4 @@ def HazuretiHako(now_agents_positions, fig_name):
     ax.set_title('箱ひげ図(外れ値あり)')
     ax.set_xlabel('通過人数')
 
-    fig4.savefig(f"z{fig_name}_hakohazure.png")
+    fig4.savefig(f"{fig_name}_hakohazure.png")

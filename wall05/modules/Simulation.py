@@ -262,6 +262,7 @@ class Simulation:
         now = datetime.datetime.now(JST)
         d = now.strftime('%Y/%m/%d %I:%M(%p)')
         fig_name = now.strftime('%Y%m%d%H%M')
+        fig_name = self.sim_name
 
         with open(LOG_NAME, "a") as f:
             f.write(f"終了時刻: {d}\n")
