@@ -30,6 +30,28 @@ a05py = "./a05/main.py"
 a06py = "./a06/main.py"
 a07py = "./a07/main.py"
 
+aw01py = "./aw01/main.py"
+aw02py = "./aw02/main.py"
+aw03py = "./aw03/main.py"
+aw04py = "./aw04/main.py"
+aw05py = "./aw05/main.py"
+aw06py = "./aw06/main.py"
+aw07py = "./aw07/main.py"
+aw08py = "./aw08/main.py"
+aw09py = "./aw09/main.py"
+aw10py = "./aw10/main.py"
+aw11py = "./aw11/main.py"
+aw12py = "./aw12/main.py"
+aw13py = "./aw13/main.py"
+aw14py = "./aw14/main.py"
+aw15py = "./aw15/main.py"
+aw16py = "./aw16/main.py"
+aw17py = "./aw17/main.py"
+aw18py = "./aw18/main.py"
+aw19py = "./aw19/main.py"
+aw20py = "./aw20/main.py"
+
+
 
 pys = [
     # normalpy,
@@ -59,6 +81,27 @@ pys = [
     # a05py,
     # a06py,
     # a07py
+
+    aw01py,
+    aw02py,
+    aw03py,
+    aw04py,
+    aw05py,
+    aw06py,
+    aw07py,
+    aw08py,
+    aw09py,
+    aw10py,
+    aw11py,
+    aw12py,
+    aw13py,
+    aw14py,
+    aw15py,
+    aw16py,
+    aw17py,
+    aw18py,
+    aw19py,
+    aw20py,
 ]
 
 # subprocess.run(["python3", n])
