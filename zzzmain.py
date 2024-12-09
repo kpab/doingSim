@@ -32,33 +32,33 @@ a07py = "./a07/main.py"
 
 
 pys = [
-    normalpy,
+    # normalpy,
 
-    wall01py,
-    wall02py,
-    wall03py,
-    wall04py,
-    wall05py,
+    # wall01py,
+    # wall02py,
+    # wall03py,
+    # wall04py,
+    # wall05py,
     wall06py,
-    wall07py,
-    wall08py,
-    wall09py,
-    wall10py,
-    wall11py,
-    wall12py,
-    wall13py,
-    wall14py,
-    wall15py,
-    wall16py,
-    wall17py,
+    # wall07py,
+    # wall08py,
+    # wall09py,
+    # wall10py,
+    # wall11py,
+    # wall12py,
+    # wall13py,
+    # wall14py,
+    # wall15py,
+    # wall16py,
+    # wall17py,
 
-    a01py,
-    a02py,
-    a03py,
-    a04py,
-    a05py,
-    a06py,
-    a07py
+    # a01py,
+    # a02py,
+    # a03py,
+    # a04py,
+    # a05py,
+    # a06py,
+    # a07py
 ]
 
 # subprocess.run(["python3", n])

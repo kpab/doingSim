@@ -35,4 +35,4 @@ PERFECT_FAKE = True # やる
 HIDE = True # シミュレーション隠すか
 BACKGROUND = True # Backgroundか
 # ----------------
-LOG_NAME = "zylog.txt"
+LOG_NAME = "a03.txt"
