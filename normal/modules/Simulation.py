@@ -224,6 +224,7 @@ class Simulation:
         scatter = ax.scatter([], [], c=[])
 
         def update(frame):
+            print(self.walls)
             # if now_frame %5000 == 0 and now_frame>SKIP_RESULT_COUNT:
             #     # print(now_frame)
             #     t_delta = datetime.timedelta(hours=9)
