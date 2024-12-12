@@ -1,25 +1,15 @@
-from modules.Constants_morning import *
 import numpy as np
-import matplotlib
-if BACKGROUND:
-    matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.patches import Rectangle
-from modules.Constants_morning import *
+from modules.Constants import *
 from modules.Agent import Agent
 from modules.Result import *
-from modules.GappingHeatmap import *
-
-import datetime
-
-now_agents_positions = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
-now_frame = 0 # 現在のフレーム数
+from modules.Constants import *
+import sys
 
 class Simulation:
-    def __init__(self, width, height, sim_name="no-name", type_name="no-type"):
-        self.sim_name = sim_name
-        self.type_name = type_name
+    def __init__(self, width, height):
         self.width = width
         self.height = height
         self.agents = []
@@ -43,7 +33,6 @@ class Simulation:
         self.goal_exit = []
         self.colors = ['red', 'blue', 'green', 'pink', 'purple']
         self.goaled_agents = []
-
 
     # 壁
     def add_wall(self, x1, y1, x2, y2):
@@ -138,13 +127,11 @@ class Simulation:
 
         if now_frame >= FRAME_COUNT:
             # sys.exit()
-            
             return
         else:
             now_frame += 1
         # -- 現在地リスト格納 --
-        if now_frame > SKIP_RESULT_COUNT:
-            ChkAgentPos(now_agents_positions, self.agents)
+        ChkAgentPos(now_agents_positions, self.agents)
 
         for agent in self.agents: # 位置こーしん
             agent.update(self.agents, self.walls)
@@ -155,55 +142,26 @@ class Simulation:
                 self.agents.remove(agent)
                 if now_frame > SKIP_RESULT_COUNT:
                     self.goaled_agents.append(agent)
-                    continue
-            if agent.futinobe:
-                for g in self.goal_enter:
-                    if np.linalg.norm(agent.position - g) < 15:
-                        if agent in self.agents:
-                            self.agents.remove(agent)
-                        if now_frame > SKIP_RESULT_COUNT:
-                            self.goaled_agents.append(agent)
-                        continue
-            else:
-                for g in self.goal_exit:
-                    if np.linalg.norm(agent.position - g) < 15:
-                        if agent in self.agents:
-                            self.agents.remove(agent)
-                        if now_frame > SKIP_RESULT_COUNT:
-                            self.goaled_agents.append(agent)
-                        continue
-
-        for _ in range(2):
-            if np.random.rand() < BORN_RATE: # 生成
-                self.born_agent()
+        if np.random.rand() < BORN_RATE: # 生成
+            self.born_agent()
 
     def animate(self, num_frames):
-        with open(LOG_NAME, "a") as f:
-            f.write("-------------------------------\n")
-            t_delta = datetime.timedelta(hours=9)
-            JST = datetime.timezone(t_delta, 'JST')
-            now = datetime.datetime.now(JST)
-            d = now.strftime('%Y/%m/%d %I:%M(%p)')
-            fig_name = now.strftime('%Y%m%d%H%M')
-            f.write(f"記録開始: {d}\n")
-
         fig, ax = plt.subplots(figsize=(10, 10))
         ax.set_xlim(0, self.width)
         ax.set_ylim(0, self.height)
-        text = ax.text(250, 520, 0, ha='center')
-        
+
         # 壁の描画
         for wall in self.walls:
             ax.add_patch(Rectangle((wall[0], wall[1]), wall[2]-wall[0], wall[3]-wall[1]))
 
         for wall in self.fake_walls:
-            if PERFECT_FAKE:
+            if perfect_fake:
                 ax.add_patch(Rectangle((wall[0], wall[1]), wall[2]-wall[0], wall[3]-wall[1]))
             else:
                 ax.add_patch(Rectangle((wall[0], wall[1]), wall[2]-wall[0], wall[3]-wall[1],fc="r"))
 
         # 中間地点の描画
-        if not PERFECT_FAKE:
+        if not perfect_fake:
             for middle in self.middle_positions:
                 ax.plot(middle[0], middle[1], 'g*', markersize=10)
             for middle in self.middle_positions_v2:
@@ -224,61 +182,15 @@ class Simulation:
         scatter = ax.scatter([], [], c=[])
 
         def update(frame):
-            # print(self.walls)
-            if now_frame %2000 == 0 and now_frame>SKIP_RESULT_COUNT:
-                # print(now_frame)
-                t_delta = datetime.timedelta(hours=9)
-                JST = datetime.timezone(t_delta, 'JST')
-                now = datetime.datetime.now(JST)
-                d = now.strftime('%Y/%m/%d %I:%M(%p)')
-                fig_name = now.strftime('%Y%m%d%H%M')
-                with open(LOG_NAME, "a") as f:
-                    f.write(f"ふる: {now_agents_positions}\n")
-                Heatmapping(now_agents_positions, self.walls)
-                HeatmappingNumber(now_agents_positions, self.walls, fig_name)
-                SayResult(now_frame, self.goaled_agents)
-                ChkTopFive(now_agents_positions)
-                CalcStandardHensa(now_agents_positions, fig_name)
-                HazuretiHako(now_agents_positions, fig_name)
-            if now_frame == FRAME_COUNT:
-                plt.close(fig)
-                return []
-            # print(np.array([agent.position for agent in self.agents]))
+            # if frame>FRAME_COUNT:
+            #     return
             self.update()
-            if not HIDE:
-                scatter.set_offsets([agent.position for agent in self.agents])
-                scatter.set_color([agent.color for agent in self.agents])
-            text.set_text(now_frame)
-            
+            scatter.set_offsets(np.array([agent.position for agent in self.agents]))
+            scatter.set_color([agent.color for agent in self.agents])
             return scatter,
 
-        anim = FuncAnimation(fig, update, frames=num_frames, interval=50, blit=False)
+        anim = FuncAnimation(fig, update, frames=num_frames, interval=50, blit=True)
         # ax.invert_yaxis()
         plt.show()
-       
-        # -- 結果の出力 --
-        # -- 日付 --
-        t_delta = datetime.timedelta(hours=9)
-        JST = datetime.timezone(t_delta, 'JST')
-        now = datetime.datetime.now(JST)
-        d = now.strftime('%Y/%m/%d %I:%M(%p)')
-        fig_name = now.strftime('%Y%m%d%H%M')
-        fig_name = self.sim_name
-
-        with open(LOG_NAME, "a") as f:
-            f.write(f"終了時刻: {d}\n")
-            f.write(f"{self.sim_name}\n")
-            f.write(f"全部: {now_agents_positions}\n") # 12/1追加
-
         Heatmapping(now_agents_positions, self.walls)
-        HeatmappingNumber(now_agents_positions, self.walls, fig_name)
         SayResult(now_frame, self.goaled_agents)
-        ChkTopFive(now_agents_positions)
-        CalcStandardHensa(now_agents_positions, fig_name)
-
-        # HazuretiHako(now_agents_positions, fig_name)
-        GappingHeatmap(now_agents_positions, self.walls, fig_name)
-        GappingHakohige(now_agents_positions, fig_name, self.type_name)
-        GappingHakohigeHazure(now_agents_positions, fig_name, self.type_name)
-        return []
-

@@ -2,8 +2,8 @@
 # ------------------------
 FRAME_COUNT = 100300
 SKIP_RESULT_COUNT = 300 # 結果にカウントしな�?フレー�?数
-BORN_RATE = 0.8
-FUTINOBE_RATE = 0.2 # 淵野辺�?
+BORN_RATE = 0.4
+FUTINOBE_RATE = 0.3 # 淵野辺�?
 
 MAX_SPEED = 2.5 # ?��
 MAX_MAX_SPEED = [3.0, 0.5] # 上振れ最高速度, 確�?
@@ -35,4 +35,4 @@ PERFECT_FAKE = True # �?�?
 HIDE = True # シミュレーション�?すか
 BACKGROUND = True # Background�?
 # ----------------
-LOG_NAME = "normal.txt"
+LOG_NAME = "normalyuru.txt"

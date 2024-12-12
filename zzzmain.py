@@ -3,6 +3,7 @@ import subprocess
 
 # 相対パス
 normalpy = "./normal/main.py"
+normalyurupy = "./normalyuru/main.py"
 
 wall01py = "./wall01/main.py"
 wall02py = "./wall02/main.py"
@@ -54,14 +55,15 @@ aw20py = "./aw20/main.py"
 
 
 pys = [
-    # normalpy,
+    normalpy,
+    normalyurupy
 
     # wall01py,
     # wall02py,
     # wall03py,
     # wall04py,
     # wall05py,
-    wall06py,
+    # wall06py,
     # wall07py,
     # wall08py,
     # wall09py,
@@ -82,26 +84,26 @@ pys = [
     # a06py,
     # a07py
 
-    aw01py,
-    aw02py,
-    aw03py,
-    aw04py,
-    aw05py,
-    aw06py,
-    aw07py,
-    aw08py,
-    aw09py,
-    aw10py,
-    aw11py,
-    aw12py,
-    aw13py,
-    aw14py,
-    aw15py,
-    aw16py,
-    aw17py,
-    aw18py,
-    aw19py,
-    aw20py,
+    # aw01py,
+    # aw02py,
+    # aw03py,
+    # aw04py,
+    # aw05py,
+    # aw06py,
+    # aw07py,
+    # aw08py,
+    # aw09py,
+    # aw10py,
+    # aw11py,
+    # aw12py,
+    # aw13py,
+    # aw14py,
+    # aw15py,
+    # aw16py,
+    # aw17py,
+    # aw18py,
+    # aw19py,
+    # aw20py,
 ]
 
 # subprocess.run(["python3", n])
