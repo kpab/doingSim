@@ -3,7 +3,7 @@ from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
 type_name = "aw18"
-sim_name = "朝ラッシュ@" + type_name
+sim_name = "朝@" + type_name
 
 # シミュレーションの設定
 sim = Simulation(WIDTH, HEIGHT, sim_name, type_name)

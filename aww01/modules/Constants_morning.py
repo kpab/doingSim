@@ -35,4 +35,4 @@ PERFECT_FAKE = False # やる
 HIDE = False # シミュレーション隠すか
 BACKGROUND = False # Backgroundか
 # ----------------
-LOG_NAME = "aw02.txt"
+LOG_NAME = "aww01.txt"

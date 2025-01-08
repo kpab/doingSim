@@ -2,7 +2,7 @@
 from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
-type_name = "a02"
+type_name = "b01"
 sim_name = "朝@" + type_name
 
 # シミュレーションの設�?
