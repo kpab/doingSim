@@ -56,7 +56,7 @@ aw20py = "./aw20/main.py"
 
 pys = [
     normalpy,
-    normalyurupy
+    # normalyurupy
 
     # wall01py,
     # wall02py,
