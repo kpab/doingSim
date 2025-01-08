@@ -31,8 +31,8 @@ HEIGHT_HEATMAP = int(HEIGHT/10)
 # 壁置く時:全部False
 # シミュレーション回す時、全部True
 
-PERFECT_FAKE = False # やる
-HIDE = False # シミュレーション隠すか
-BACKGROUND = False # Backgroundか
+PERFECT_FAKE = True # やる
+HIDE = True # シミュレーション隠すか
+BACKGROUND = True # Backgroundか
 # ----------------
 LOG_NAME = "aw13.txt"

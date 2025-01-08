@@ -39,7 +39,7 @@ sim.add_wall(50, 300, 150, 350)
 sim.add_wall(495, 0, 500, 500)
 
 # 追加障害物
-sim.add_wall(420, 280, 430, 290)
+sim.add_wall(420, 310, 430, 320)
 
 # フェイク壁
 # sim.add_fake_wall(475, 0, 500, 500)

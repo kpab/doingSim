@@ -51,7 +51,7 @@ sim.add_wall(360, 270, 370, 280)
 sim.add_wall(390, 270, 400, 280) # aw10
 sim.add_wall(390, 290, 400, 300)
 sim.add_wall(390, 320, 400, 330)
-sim.add_wall(420, 280, 430, 290)
+sim.add_wall(420, 310, 430, 320)
 sim.add_wall(420, 280, 430, 290)
 sim.add_wall(420, 250, 430, 260) # aw15
 sim.add_wall(420, 220, 430, 230)

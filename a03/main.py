@@ -3,7 +3,7 @@ from modules.Simulation import Simulation
 from modules.Constants_morning import *
 
 type_name = "a03"
-sim_name = "朝ラ@" + type_name
+sim_name = "朝@" + type_name
 
 # シミュレーションの設�?
 sim = Simulation(WIDTH, HEIGHT, sim_name, type_name)
@@ -38,8 +38,6 @@ sim.add_wall(190, 430, 200, 450)
 sim.add_wall(50, 300, 150, 350)
 sim.add_wall(495, 0, 500, 500)
 
-# 追�?障害物
-# sim.add_wall(385, 350, 405, 355)
 # フェイク�?
 # sim.add_fake_wall(475, 0, 500, 500)
 sim.add_fake_wall(30,300, 50, 450)
@@ -50,8 +48,8 @@ sim.add_fake_wall(290, 450, 500, 480) # �?
 ### add_start_position(x, y, weight, futinobe, middle, middle_2)
 # --- futinobe person ---
 sim.add_start_position(490, 200, 1, True, False)
-# sim.add_start_position(490, 220, 1, True, False) # 消し�?
-# sim.add_start_position(490, 240, 1, True, False)
+sim.add_start_position(490, 220, 1, True, False)
+sim.add_start_position(490, 240, 1, True, False)
 
 # --- futinobe worker ---
 # 階段(奥)
@@ -61,8 +59,10 @@ sim.add_start_position(55, 420, 3, False, True)
 sim.add_start_position(55, 410, 3, False, True)
 
 # エスカレーター(上り)
-sim.add_start_position(310, 440, 3, False) 
-sim.add_start_position(310, 420, 3, False) 
+# sim.add_start_position(310, 440, 3, False) 
+# sim.add_start_position(310, 420, 3, False) 
+# sim.add_start_position(310, 400, 3, False) 
+# sim.add_start_position(310, 380, 3, False) 
 
 # 階段(手前)
 sim.add_start_position(420, 440, 1, False, middle_2=True)
@@ -76,8 +76,6 @@ sim.add_start_position(420, 380, 1, False, middle_2=True)
 # ------------------------------
 ### add_goal(x, y, weight, futinobe, middle, middle_2)
 # 目�?地(確�?あり?�?
-sim.add_goal(490, 220, 1, False) # 追�?
-sim.add_goal(490, 240, 1, False) # 追�?
 sim.add_goal(490, 260, 1, False)
 sim.add_goal(490, 280, 1, False)
 sim.add_goal(490, 300, 1, False)
@@ -85,7 +83,7 @@ sim.add_goal(490, 320, 1, False)
 sim.add_goal(490, 340, 1, False) # 12/5 tuika
 
 # 階段(右)
-sim.add_goal(420, 440, 1, True, False, True)
+# sim.add_goal(420, 440, 1, True, False, True)
 # sim.add_goal(420, 430, 1, True, False, True)
 # sim.add_goal(420, 420, 1, True, False, True)
 # sim.add_goal(420, 410, 1, True, False, True) 
@@ -100,8 +98,10 @@ sim.add_goal(55, 380, 2, True, True)
 sim.add_goal(55, 370, 2, True, True)
 
 # エスカレーター(下り)
+sim.add_goal(310, 440, 2, True) 
+sim.add_goal(310, 420, 2, True)
 sim.add_goal(310, 400, 2, True) 
-sim.add_goal(310, 380, 2, True) 
+sim.add_goal(310, 380, 2, True)
 
 # ------------------------------
 # 中間地点
@@ -117,14 +117,11 @@ sim.add_middle_position(300, 350)
 # sim.add_middle_position(420, 350, True)
 # sim.add_middle_position(415, 350, True)
 sim.add_middle_position(410, 350, True)
-# 消し�?
 sim.add_middle_position(405, 350, True)
 sim.add_middle_position(400, 350, True)
 sim.add_middle_position(395, 350, True)
 sim.add_middle_position(390, 350, True)
 sim.add_middle_position(385, 350, True)
-# sim.add_middle_position(380, 350, True)
-# sim.add_middle_position(375, 350, True)
 
 # 初期エージェント�?�生�??
 for _ in range(START_HUMAN_COUNT):
