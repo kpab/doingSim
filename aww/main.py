@@ -39,7 +39,7 @@ sim.add_wall(50, 300, 150, 350)
 sim.add_wall(495, 0, 500, 500)
 
 # 追加障害物
-sim.add_wall(80, 375, 90, 380) # aww01
+sim.add_wall(85, 370, 90, 380) # aww01
 sim.add_wall(135, 380, 140, 390)
 sim.add_wall(180, 380, 185, 390)
 sim.add_wall(220, 350, 225, 360)
