@@ -123,7 +123,7 @@ sim.add_middle_position(405, 350, True)
 sim.add_middle_position(400, 350, True)
 sim.add_middle_position(395, 350, True)
 sim.add_middle_position(390, 350, True)
-# sim.add_middle_position(385, 350, True)
+sim.add_middle_position(385, 350, True)# 1/14
 
 # 初期エージェントの生成
 for _ in range(START_HUMAN_COUNT):

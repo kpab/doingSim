@@ -1,6 +1,6 @@
 # 朝ラ�?シュ用定数
 # ------------------------
-FRAME_COUNT = 100300
+FRAME_COUNT = 30300
 SKIP_RESULT_COUNT = 300 # 結果にカウントしな�?フレー�?数
 BORN_RATE = 0.8
 FUTINOBE_RATE = 0.2 # 淵野辺�?
