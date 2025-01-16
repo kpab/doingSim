@@ -14,6 +14,27 @@ from modules.GappingHeatmap import *
 import datetime
 
 now_agents_positions = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_AtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_BtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_CtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_KtoA = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_KtoB = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_positions_KtoC = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+
+now_agents_speed_AtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_speed_BtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_speed_CtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_speed_KtoA = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_speed_KtoB = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+now_agents_speed_KtoC = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+
+total_speed_AtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+total_speed_BtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+total_speed_CtoK = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+total_speed_KtoA = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+total_speed_KtoB = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+total_speed_KtoC = [[0 for j in range(WIDTH_HEATMAP)] for i in range(HEIGHT_HEATMAP)]
+
 now_frame = 0 # 現在のフレーム数
 
 class Simulation:
@@ -145,6 +166,12 @@ class Simulation:
         # -- 現在地リスト格納 --
         if now_frame > SKIP_RESULT_COUNT:
             ChkAgentPos(now_agents_positions, self.agents)
+            ChkAgentPosAtoK(now_agents_positions_AtoK, now_agents_speed_AtoK, self.agents, total_speed_AtoK)
+            ChkAgentPosBtoK(now_agents_positions_BtoK, now_agents_speed_BtoK, self.agents, total_speed_BtoK)
+            ChkAgentPosCtoK(now_agents_positions_CtoK, now_agents_speed_CtoK, self.agents, total_speed_CtoK)
+            ChkAgentPosKtoA(now_agents_positions_KtoA, now_agents_speed_KtoA, self.agents, total_speed_KtoA)
+            ChkAgentPosKtoB(now_agents_positions_KtoB, now_agents_speed_KtoB, self.agents, total_speed_KtoB)
+            ChkAgentPosKtoC(now_agents_positions_KtoC, now_agents_speed_KtoC, self.agents, total_speed_KtoC)
 
         for agent in self.agents: # 位置こーしん
             agent.update(self.agents, self.walls)
@@ -224,22 +251,21 @@ class Simulation:
         scatter = ax.scatter([], [], c=[])
 
         def update(frame):
-            # print(self.walls)
-            if now_frame %2000 == 0 and now_frame>SKIP_RESULT_COUNT:
-                # print(now_frame)
-                t_delta = datetime.timedelta(hours=9)
-                JST = datetime.timezone(t_delta, 'JST')
-                now = datetime.datetime.now(JST)
-                d = now.strftime('%Y/%m/%d %I:%M(%p)')
-                fig_name = now.strftime('%Y%m%d%H%M')
-                with open(LOG_NAME, "a") as f:
-                    f.write(f"ふる: {now_agents_positions}\n")
-                Heatmapping(now_agents_positions, self.walls)
-                HeatmappingNumber(now_agents_positions, self.walls, fig_name)
-                SayResult(now_frame, self.goaled_agents)
-                ChkTopFive(now_agents_positions)
-                CalcStandardHensa(now_agents_positions, fig_name)
-                HazuretiHako(now_agents_positions, fig_name)
+            # if now_frame %5000 == 0 and now_frame>SKIP_RESULT_COUNT:
+            #     # print(now_frame)
+            #     t_delta = datetime.timedelta(hours=9)
+            #     JST = datetime.timezone(t_delta, 'JST')
+            #     now = datetime.datetime.now(JST)
+            #     d = now.strftime('%Y/%m/%d %I:%M(%p)')
+            #     fig_name = now.strftime('%Y%m%d%H%M')
+            #     with open(LOG_NAME, "a") as f:
+            #         f.write(f"ふる: {now_agents_positions}\n")
+            #     Heatmapping(now_agents_positions, self.walls)
+            #     HeatmappingNumber(now_agents_positions, self.walls, fig_name)
+            #     SayResult(now_frame, self.goaled_agents)
+            #     ChkTopFive(now_agents_positions)
+            #     CalcStandardHensa(now_agents_positions, fig_name)
+            #     HazuretiHako(now_agents_positions, fig_name)
             if now_frame == FRAME_COUNT:
                 plt.close(fig)
                 return []
@@ -269,6 +295,18 @@ class Simulation:
             f.write(f"終了時刻: {d}\n")
             f.write(f"{self.sim_name}\n")
             f.write(f"全部: {now_agents_positions}\n") # 12/1追加
+            f.write(f"AtoK: {now_agents_positions_AtoK}\n")
+            f.write(f"BtoK: {now_agents_positions_BtoK}\n")
+            f.write(f"CtoK: {now_agents_positions_CtoK}\n")
+            f.write(f"KtoA: {now_agents_positions_KtoA}\n")
+            f.write(f"KtoB: {now_agents_positions_KtoB}\n")
+            f.write(f"KtoC: {now_agents_positions_KtoC}\n")
+            f.write(f"S_AtoK: {now_agents_speed_AtoK}\n")
+            f.write(f"S_BtoK: {now_agents_speed_BtoK}\n")
+            f.write(f"S_CtoK: {now_agents_speed_CtoK}\n")
+            f.write(f"S_KtoA: {now_agents_speed_KtoA}\n")
+            f.write(f"S_KtoB: {now_agents_speed_KtoB}\n")
+            f.write(f"S_KtoC: {now_agents_speed_KtoC}\n")
 
         Heatmapping(now_agents_positions, self.walls)
         HeatmappingNumber(now_agents_positions, self.walls, fig_name)

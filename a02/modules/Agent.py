@@ -34,6 +34,24 @@ class Agent:
         else:
             self.middle_position = None
         self.total_speed = 0
+
+        if self.position[0] == 55:
+            self.Stype = "A"
+        elif self.position[0] == 310:
+            self.Stype = "B"
+        elif self.position[1] > 350:
+            self.Stype = "C"
+        else:
+            self.Stype = "K"
+
+        if self.goal[0] == 55:
+            self.Gtype = "A"
+        elif self.goal[0] == 310:
+            self.Gtype = "B"
+        elif self.goal[1] > 350:
+            self.Gtype = "C"
+        else:
+            self.Gtype = "K"
         
 
     def update(self, agents, walls):
