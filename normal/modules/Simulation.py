@@ -163,6 +163,9 @@ class Simulation:
             return
         else:
             now_frame += 1
+
+        for agent in self.agents: # 位置こーしん
+            agent.update(self.agents, self.walls)
         # -- 現在地リスト格納 --
         if now_frame > SKIP_RESULT_COUNT:
             ChkAgentPos(now_agents_positions, self.agents)
@@ -172,9 +175,6 @@ class Simulation:
             ChkAgentPosKtoA(now_agents_positions_KtoA, now_agents_speed_KtoA, self.agents, total_speed_KtoA)
             ChkAgentPosKtoB(now_agents_positions_KtoB, now_agents_speed_KtoB, self.agents, total_speed_KtoB)
             ChkAgentPosKtoC(now_agents_positions_KtoC, now_agents_speed_KtoC, self.agents, total_speed_KtoC)
-
-        for agent in self.agents: # 位置こーしん
-            agent.update(self.agents, self.walls)
 
         # -- 到着エージェントの削除 --
         for agent in self.agents:
@@ -251,21 +251,6 @@ class Simulation:
         scatter = ax.scatter([], [], c=[])
 
         def update(frame):
-            # if now_frame %5000 == 0 and now_frame>SKIP_RESULT_COUNT:
-            #     # print(now_frame)
-            #     t_delta = datetime.timedelta(hours=9)
-            #     JST = datetime.timezone(t_delta, 'JST')
-            #     now = datetime.datetime.now(JST)
-            #     d = now.strftime('%Y/%m/%d %I:%M(%p)')
-            #     fig_name = now.strftime('%Y%m%d%H%M')
-            #     with open(LOG_NAME, "a") as f:
-            #         f.write(f"ふる: {now_agents_positions}\n")
-            #     Heatmapping(now_agents_positions, self.walls)
-            #     HeatmappingNumber(now_agents_positions, self.walls, fig_name)
-            #     SayResult(now_frame, self.goaled_agents)
-            #     ChkTopFive(now_agents_positions)
-            #     CalcStandardHensa(now_agents_positions, fig_name)
-            #     HazuretiHako(now_agents_positions, fig_name)
             if now_frame == FRAME_COUNT:
                 plt.close(fig)
                 return []
